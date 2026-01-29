@@ -1,0 +1,57 @@
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #000000;
+}
+
+.header__inner img {
+    width: 300px;
+}
+
+.header__center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header__input {
+    padding: 8px;
+    width: 60%;
+    max-width: 400px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.header__content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.logout-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 17px;
+    margin-top: 18px;
+    align-items: center;
+}
+
+.mypage-link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.sell-btn {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 3px;
+    padding: 5px 15px;
+}
+
+
