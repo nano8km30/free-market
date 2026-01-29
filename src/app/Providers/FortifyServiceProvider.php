@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -42,6 +44,20 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
 
             return Limit::perMinute(10)->by($email . $request->ip());
+        });
+
+        Fortify::authenticateUsing(function ($request) {
+    if (
+        Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ])
+    ) {
+        return Auth::user();
+    }
+
+    throw ValidationException::withMessages([
+        'email' => 'ログイン情報が登録されていません',]);
         });
     }
 }
