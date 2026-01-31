@@ -30,6 +30,22 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 //    $request->user()->sendEmailVerificationNotification();
 //    return back()->with('message', '認証メールを再送しました');
 //})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+// プロフィール編集（初回・編集どちらも）
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage/profile', function () {
+        return view('mypage.profile');
+    })->name('mypage.profile');
+
+    Route::post('/mypage/profile', [ProfileController::class, 'update'])
+        ->name('mypage.profile.update');
+});
+
+// プロフィール完了後のみ入れるページ
+Route::middleware(['auth', 'verified', 'profile.completed'])->group(function () {
+    Route::get('/mypage', function () {
+        return view('mypage');
+    })->name('mypage');
+});
 
 
 Route::get('/login', [LoginController::class, 'show'])->name('login.show');
