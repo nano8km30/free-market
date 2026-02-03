@@ -25,7 +25,7 @@
                     type="text"
                     name="name"
                     class="form-input"
-                    value="{{ old('name', auth()->user()->name) }}"
+                    value="{{ old('name', $user->name) }}"
                 >
             </div>
 
@@ -35,7 +35,7 @@
                     type="text"
                     name="postcode"
                     class="form-input"
-                    value="{{ old('postcode', auth()->user()->postcode) }}"
+                    value="{{ old('postcode', $address?->postal_code) }}"
                 >
             </div>
 
@@ -45,7 +45,7 @@
                     type="text"
                     name="address"
                     class="form-input"
-                    value="{{ old('address', auth()->user()->address) }}"
+                    value="{{ old('address', $address?->address) }}"
                 >
             </div>
 
@@ -55,7 +55,7 @@
                     type="text"
                     name="building"
                     class="form-input"
-                    value="{{ old('building', auth()->user()->building) }}"
+                    value="{{ old('building', $address?->building) }}"
                 >
             </div>
 

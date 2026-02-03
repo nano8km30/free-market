@@ -35,8 +35,9 @@
     color: white;
     border: none;
     font-size: 17px;
-    margin-top: 18px;
+    margin-top: 24px;
     align-items: center;
+    margin-bottom: 6px;
 }
 
 .mypage-link {
@@ -54,4 +55,10 @@
     padding: 5px 15px;
 }
 
-
+@media screen and (max-width: 850px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 12px;
+    }
+}

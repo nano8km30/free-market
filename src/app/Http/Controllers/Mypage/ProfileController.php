@@ -2,27 +2,48 @@
 
 namespace App\Http\Controllers\Mypage;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Address;
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
-    public function update(Request $request){
+    // プロフィール編集画面表示
+    public function edit()
+    {
+        $user = auth()->user();
+        $address = $user->address; // リレーションで住所取得（1対1）
+
+        return view('mypage.profile', compact('user', 'address'));
+    }
+
+    // プロフィール更新処理
+    public function update(Request $request)
+    {
+        $user = auth()->user();
+
+        // バリデーション（例）
         $request->validate([
-        'name' => 'required|string|max:255',
-        'postal_code' => 'nullable|string|max:10',
-        'address' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
+            'postcode' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'building' => 'nullable|string|max:255',
         ]);
 
-        $user = Auth::user();
+        // ユーザー情報更新（名前など）
+        $user->update([
+            'name' => $request->name,
+        ]);
 
-        $user->name = $request->name;
-        $user->postal_code = $request->postal_code;
-        $user->address = $request->address;
-        $user->save();
+        // 住所情報更新
+        $address = $user->address ?? new Address();
+        $address->user_id = $user->id;
+        $address->postal_code = $request->postcode; 
+        $address->address = $request->address;
+        $address->building = $request->building;
+        $address->save();
 
-        return redirect()->back()
-            ->with('success', 'プロフィールを更新しました');
+        return redirect()->route('items.index');
     }
 }
