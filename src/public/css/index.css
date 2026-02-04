@@ -36,26 +36,36 @@
 }
 
 .item-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 80px;
-    margin-top: 150px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 40px;
+    margin-top: 200px;
 }
 
 .item-card {
-    padding: 30px;
-    width: 20%;
+    padding: 10px 0;
+    width: 100%;
     box-sizing: border-box;
 }
 
 .item-image img {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
+.item-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    color: #000000;
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
     .item-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
     }
 }

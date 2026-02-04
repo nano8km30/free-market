@@ -27,7 +27,7 @@
                         <span class="sold-message">Sold</span>
                     @endif
 
-                    <a href="{{ url('/item/'.$item->id) }}">
+                    <a class="item-link" href="{{ url('/item/'.$item->id) }}">
                         <div class="item-image">
                             <img src="{{ $item->image }}" alt="{{ $item->name }}">
                         </div>
