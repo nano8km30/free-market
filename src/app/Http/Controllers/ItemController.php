@@ -47,7 +47,7 @@ class ItemController extends Controller
 
         Item::create([
             'user_id'     => Auth::id(),
-            'category_id' => $request->category_ids[0],
+            'category_id' => $request->category_id, // ← 単数
             'name'        => $request->name,
             'brand'       => $request->brand,
             'description' => $request->description,

@@ -27,6 +27,9 @@
                     class="form-input"
                     value="{{ old('name', $user->name) }}"
                 >
+                @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -37,6 +40,9 @@
                     class="form-input"
                     value="{{ old('postcode', $address?->postal_code) }}"
                 >
+                @error('postcode')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -47,6 +53,9 @@
                     class="form-input"
                     value="{{ old('address', $address?->address) }}"
                 >
+                @error('address')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">

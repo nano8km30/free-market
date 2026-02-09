@@ -82,7 +82,11 @@
     font-size: 14px;
 }
 
-
+.error-message {
+    color: #f04c4c;
+    text-align: left;
+    margin-top: 5px;
+}
 
 @media screen and (max-width: 850px) {
     .profile-content {
