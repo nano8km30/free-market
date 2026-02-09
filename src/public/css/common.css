@@ -19,6 +19,7 @@
 .header__input {
     padding: 8px;
     width: 60%;
+    margin-top: 15px;
     max-width: 400px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -38,6 +39,14 @@
     margin-top: 24px;
     align-items: center;
     margin-bottom: 6px;
+}
+
+.login-button {
+    color: white;
+    border: none;
+    font-size: 17px;
+    align-items: center;
+    text-decoration: none
 }
 
 .mypage-link {

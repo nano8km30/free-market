@@ -10,7 +10,17 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','price','brand','description','image','condition'];
+    protected $fillable = [
+        'user_id',
+        'category_ids', 
+        'name',
+        'brand',
+        'description',
+        'price',
+        'condition',
+        'image',
+        'is_sold',
+    ];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -20,9 +30,9 @@ class Item extends Model
         return $this->hasMany(ItemImage::class);
     }
 
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
+    protected $casts = [
+        'category_ids' => 'array',
+    ];
 
     public function likes(){
         return $this->hasMany(Like::class);

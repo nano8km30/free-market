@@ -67,7 +67,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 2,
+                'category_id' => 5,
                 'name' => 'マイク',
                 'price' => 8000,
                 'brand' => null,
@@ -78,7 +78,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 1,
+                'category_id' => 5,
                 'name' => 'ショルダーバッグ',
                 'price' => 3500,
                 'brand' => null,
@@ -100,10 +100,10 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 2,
+                'category_id' => 5,
                 'name' => 'コーヒーミル',
                 'price' => 4000,
-                'brand' => 'Starbacks',
+                'brand' => Starbacks,
                 'description' => '手動のコーヒーミル',
                 'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
                 'condition' => '良好',
@@ -111,7 +111,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 1,
+                'category_id' => 5,
                 'name' => 'メイクセット',
                 'price' => 2500,
                 'brand' => null,

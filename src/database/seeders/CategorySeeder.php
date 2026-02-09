@@ -26,6 +26,7 @@ class CategorySeeder extends Seeder
             'ベビー・キッズ',
         ];
 
+
         foreach ($categories as $name) {
             Category::create(['name' => $name]);
         }

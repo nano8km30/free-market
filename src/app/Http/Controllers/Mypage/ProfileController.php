@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -19,17 +20,11 @@ class ProfileController extends Controller
     }
 
     // プロフィール更新処理
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
-        $user = auth()->user();
+        $validated = $request->validated();
 
-        // バリデーション（例）
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'postcode' => 'required|string|max:20',
-            'address' => 'required|string|max:255',
-            'building' => 'nullable|string|max:255',
-        ]);
+        $user = auth()->user();
 
         // ユーザー情報更新（名前など）
         $user->update([
