@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category; 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Http\Requests\ExhibitionRequest;
 
 class SellController extends Controller
 {
@@ -17,7 +18,7 @@ class SellController extends Controller
     }
 
     // 出品処理
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
         $request->validate([
             'image' => 'required|image',

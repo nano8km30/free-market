@@ -10,7 +10,6 @@
         <form method="POST" action="{{ route('items.store') }}" enctype="multipart/form-data">
             @csrf
 
-
             <div class="form-group">
                 <label class="form-label" for="image">商品画像</label>
 
@@ -18,6 +17,9 @@
                     <span class="upload-button">画像を選択する</span>
                     <input class="file-input" type="file" name="image" id="image">
                 </label>
+                @error('image')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
 
@@ -26,17 +28,24 @@
             <div class="form-group">
                 <label class="form-label">カテゴリー</label>
 
-                <div class="select-box">
-                    <select name="category_ids[]" class="form-select" multiple>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}"
-                                {{ in_array($category->id, old('category_ids', [])) ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
+                <div class="category-select">
+                    @foreach($categories as $category)
+                        <label class="category-item">
+                            <input
+                                type="checkbox"
+                                name="category_ids[]"
+                                value="{{ $category->id }}"
+                                {{ in_array($category->id, old('category_ids', [])) ? 'checked' : '' }}
+                            >
+                            <span>{{ $category->name }}</span>
+                        </label>
+                    @endforeach
                 </div>
+                @error('category_ids')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
+
 
             <div class="form-group">
                 <label class="form-label" for="condition">商品の状態</label>
@@ -50,6 +59,9 @@
                         <option value="状態が悪い" {{ old('condition') == '状態が悪い' ? 'selected' : '' }}>状態が悪い</option>
                     </select>
                 </div>
+                @error('condition')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <h2 class="detail-title">商品名と説明</h2>
@@ -57,6 +69,9 @@
             <div class="form-group">
                 <label class="form-label" for="name">商品名</label>
                 <input class="form-input" type="text" name="name" id="name" value="{{ old('name') }}">
+                @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -67,6 +82,9 @@
             <div class="form-group">
                 <label class="form-label" for="description">商品の説明</label>
                 <textarea class="form-item-detail" name="description" id="description">{{ old('description') }}</textarea>
+                @error('description')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -75,6 +93,9 @@
                     <span class="price-symbol">¥</span>
                     <input class="price-input" type="number" name="price" id="price" value="{{ old('price') }}">
                 </div>
+                @error('price')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </div>
 
             <button type="submit" class="sell-button">出品する</button>

@@ -63,6 +63,7 @@
     color: #8b8b8b;
     border-bottom: 1px solid #8b8b8b;
     padding-bottom: 5px;
+    margin-top: 50px;
 }
 
 .category-item input[type="checkbox"] {
@@ -90,10 +91,7 @@
 
 .form-select {
     height: 40px;
-    margin-bottom: 50px;
-}
-
-.form-select {
+    margin-bottom: 10px;
     appearance: none;
     width: 100%;
     padding: 10px 40px 10px 12px;
@@ -113,7 +111,7 @@
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 8px solid #333;
-    transform: translateY(-350%);
+    transform: translateY(-120%);
     pointer-events: none;
 }
 
@@ -155,6 +153,11 @@
     cursor: pointer;
     color: rgb(255, 255, 255);
     background-color: #f04c4c;
+}
+
+.error-message {
+    color: #f04c4c;
+    margin-top: 5px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
