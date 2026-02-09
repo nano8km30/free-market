@@ -6,6 +6,7 @@ use App\Http\Controllers\Mypage\ProfileController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,7 @@ Route::middleware(['auth', 'verified', 'profile.completed'])->group(function () 
 
 Route::get('/login', [LoginController::class, 'show'])->name('login.show');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/items/{id}', [ItemController::class, 'show'])->name('items.show');
+
+Route::get('/items', [ItemController::class, 'index'])->name('items.index');
