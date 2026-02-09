@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Http\Request; 
 
 class LoginController extends Controller
 {
@@ -19,15 +21,20 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (!Auth::user()->profile_completed) {
-                return redirect()->route('mypage.profile');
-            }
-
-            return redirect()->route('mypage');
+            return redirect()->route('items.index');
         }
 
         return back()->withErrors([
             'email' => 'ログイン情報が正しくありません',
         ])->withInput();
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login.show');
     }
 }
