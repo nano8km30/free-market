@@ -16,12 +16,18 @@
 
 	<div class="header__content">
 		@auth
-		<form method="POST" action="{{ route('logout') }}">
-			@csrf
-			<button type="submit" class="logout-button">ログアウト</button>
-		</form>
+			<form method="POST" action="{{ route('logout') }}">
+				@csrf
+				<button type="submit" class="logout-button">ログアウト</button>
+			</form>
 			<a href="/mypage" class="mypage-link">マイページ</a>
 			<a href="/sell" class="sell-btn">出品</a>
 		@endauth
+
+		@guest
+			<a href="{{ route('login') }}" class="login-button">ログイン</a>
+			<a href="/mypage" class="mypage-link">マイページ</a>
+			<a href="/sell" class="sell-btn">出品</a>
+		@endguest
 	</div>
 </header>

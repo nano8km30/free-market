@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\SellController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,11 @@ Route::get('/', [ItemController::class, 'index'])
     ->name('items.index');
 
 // 商品詳細
-Route::get('/item/{item}', [ItemDetailController::class, 'show'])->name('items.show');
+//Route::get('/item/{item}', [ItemDetailController::class, 'show'])->name('items.show');
 
 // 商品出品ページ
-Route::middleware('auth')->get('/sell', [ItemController::class, 'create'])->name('items.create');
-Route::middleware('auth')->post('/sell', [ItemController::class, 'store'])->name('items.store');
+Route::middleware('auth')->get('/sell', [SellController::class, 'create'])->name('items.create');
+Route::middleware('auth')->post('/sell', [SellController::class, 'store'])->name('items.store');
 
 
 // マイページ
