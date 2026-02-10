@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ItemImage;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Item extends Model
 {
@@ -45,4 +46,9 @@ class Item extends Model
     public function order(){
         return $this->hasOne(Order::class);
     }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'category_item', 'item_id', 'category_id');
+    }
+
 }

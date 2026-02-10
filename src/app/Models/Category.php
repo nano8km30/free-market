@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
-    public function items(){
-        return $this->belongsToMany(Item::class);
+    public function items(): BelongsToMany
+    {
+        return $this->belongsToMany(Item::class, 'category_item', 'category_id', 'item_id');
     }
 }

@@ -1,0 +1,17 @@
+{
+    "name": "laravel-project",
+    "private": true,
+    "devDependencies": {
+        "axios": "^1.13.5",
+        "bootstrap": "^5.1",
+        "laravel-mix": "^6.0.0",
+        "sass": "^1.32.0",
+        "sass-loader": "^12.1.0"
+    },
+    "scripts": {
+        "dev": "npm run development",
+        "development": "webpack --config webpack.mix.js --mode development",
+        "production": "webpack --config webpack.mix.js --mode production",
+        "watch": "webpack --watch --config webpack.mix.js"
+    }
+}

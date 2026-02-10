@@ -12,7 +12,6 @@ class ItemSeeder extends Seeder
         $items = [
             [
                 'user_id' => 1,
-                'category_id' => 1,
                 'name' => '腕時計',
                 'price' => 15000,
                 'brand' => 'Rolax',
@@ -23,7 +22,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 2,
                 'name' => 'HDD',
                 'price' => 5000,
                 'brand' => '西芝',
@@ -34,7 +32,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 3,
                 'name' => '玉ねぎ3束',
                 'price' => 300,
                 'brand' => null,
@@ -45,7 +42,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 4,
                 'name' => '革靴',
                 'price' => 4000,
                 'brand' => null,
@@ -56,7 +52,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 5,
                 'name' => 'ノートPC',
                 'price' => 45000,
                 'brand' => null,
@@ -67,7 +62,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 5,
                 'name' => 'マイク',
                 'price' => 8000,
                 'brand' => null,
@@ -78,7 +72,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 5,
                 'name' => 'ショルダーバッグ',
                 'price' => 3500,
                 'brand' => null,
@@ -89,7 +82,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 5,
                 'name' => 'タンブラー',
                 'price' => 500,
                 'brand' => null,
@@ -100,10 +92,9 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 5,
                 'name' => 'コーヒーミル',
                 'price' => 4000,
-                'brand' => Starbacks,
+                'brand' => 'Starbucks',
                 'description' => '手動のコーヒーミル',
                 'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
                 'condition' => '良好',
@@ -111,7 +102,6 @@ class ItemSeeder extends Seeder
             ],
             [
                 'user_id' => 1,
-                'category_id' => 5,
                 'name' => 'メイクセット',
                 'price' => 2500,
                 'brand' => null,
