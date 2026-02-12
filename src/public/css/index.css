@@ -46,6 +46,7 @@
     padding: 10px 0;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
 .item-image img {
@@ -69,8 +70,27 @@
     color: #000000;
 }
 
+.sold-label {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    z-index: 10;
+}
+
 @media screen and (min-width: 768px) and (max-width: 850px) {
-    .item-grid {
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
+    .item-content {
+        max-width: 600px;
+        padding: 32px;
+    }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .item-content {
+        max-width: 800px;
+        padding: 48px;
     }
 }

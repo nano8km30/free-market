@@ -130,9 +130,12 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'payment_method' => [
+            'required' => '支払い方法を選択してください',
         ],
+    ],
+    'attributes' => [
+        'payment_method' => '支払い方法',
     ],
 
     /*

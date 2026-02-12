@@ -20,7 +20,9 @@ class Item extends Model
         'price',
         'condition',
         'image',
-        'is_sold',
+        'is_sold',      
+        'buyer_id',    
+        'payment_method' 
     ];
 
     public function user(){
@@ -50,5 +52,6 @@ class Item extends Model
     public function categories(){
         return $this->belongsToMany(Category::class, 'category_item', 'item_id', 'category_id');
     }
+
 
 }
