@@ -22,7 +22,8 @@ class SellController extends Controller
     {
         $request->validate([
             'image' => 'required|image',
-            'category_id' => 'required|exists:categories,id',
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id', 
             'condition' => 'required|string',
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
@@ -32,6 +33,7 @@ class SellController extends Controller
         // 画像をstorageに保存
         $path = $request->file('image')->store('items', 'public');
 
+        // Item作成
         $item = Item::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
@@ -39,11 +41,11 @@ class SellController extends Controller
             'price' => $request->price,
             'condition' => $request->condition,
             'image' => $path,
-            'category_ids' => $request->category_ids, // ← これ！
             'is_sold' => 0,
         ]);
 
-        $item->categories()->sync($request->category_ids);
+        // カテゴリーを中間テーブルに保存
+        $item->categories()->attach($request->category_ids);
 
         return redirect()->route('items.index');
     }

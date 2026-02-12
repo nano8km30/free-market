@@ -51,7 +51,7 @@
 .item-image img {
     width: 100%;
     max-width: 250px;
-    height: auto;
+    height: 250px;
 }
 
 .item-link {

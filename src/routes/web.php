@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\LikesController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +23,20 @@ Route::get('/', [ItemController::class, 'index'])
     ->name('items.index');
 
 // 商品詳細
-//Route::get('/item/{item}', [ItemDetailController::class, 'show'])->name('items.show');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
+
+// コメント投稿のルート
+Route::post('/item/{item}/comments', [CommentsController::class, 'store'])->name('comments.store');
+
+//いいね
+Route::post('/items/{item}/toggle-like', [LikesController::class, 'toggleLike'])->name('items.toggle-like');
+
+//購入ページへ
+Route::get('/purchase/{id}', [ItemController::class, 'purchase'])->name('item.purchase');
 
 // 商品出品ページ
 Route::middleware('auth')->get('/sell', [SellController::class, 'create'])->name('items.create');
 Route::middleware('auth')->post('/sell', [SellController::class, 'store'])->name('items.store');
-
 
 // マイページ
 Route::middleware('auth')->get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');
