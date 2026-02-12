@@ -19,6 +19,7 @@
 .header__input {
     padding: 8px;
     width: 60%;
+    margin-top: 15px;
     max-width: 400px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -35,8 +36,17 @@
     color: white;
     border: none;
     font-size: 17px;
-    margin-top: 18px;
+    margin-top: 24px;
     align-items: center;
+    margin-bottom: 6px;
+}
+
+.login-button {
+    color: white;
+    border: none;
+    font-size: 17px;
+    align-items: center;
+    text-decoration: none
 }
 
 .mypage-link {
@@ -54,4 +64,10 @@
     padding: 5px 15px;
 }
 
-
+@media screen and (max-width: 850px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 12px;
+    }
+}

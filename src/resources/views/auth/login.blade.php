@@ -31,7 +31,7 @@
         </form>
 
         <div class="auth-link">
-        <a class="register-link" href="{{ route('register.show') }}">会員登録はこちら</a>
+            <a class="register-link" href="{{ route('register.show') }}">会員登録はこちら</a>
         </div>
     </div>
 </div>
