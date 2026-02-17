@@ -12,6 +12,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\Mypage\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,13 @@ Route::post('/item/{item}/comments', [CommentsController::class, 'store'])->name
 //いいね
 Route::post('/items/{item}/toggle-like', [LikesController::class, 'toggleLike'])->name('items.toggle-like');
 
+//住所変更
+Route::get('/purchase/{item}/address', [PurchaseController::class, 'editAddress'])
+    ->name('purchase.address.edit');
+
+Route::post('/purchase/{item}/address', [PurchaseController::class, 'updateAddress'])
+    ->name('purchase.address.update');
+    
 // 購入画面表示
 Route::get('/purchase/{item}', [PurchaseController::class, 'show'])
     ->middleware('auth')
@@ -48,19 +56,9 @@ Route::get('/purchase/success', [PurchaseController::class, 'paymentSuccess'])
 
 Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 
-//住所変更
-Route::get('/purchase/{item}/address', [PurchaseController::class, 'editAddress'])
-    ->name('purchase.address.edit');
-
-Route::post('/purchase/{item}/address', [PurchaseController::class, 'updateAddress'])
-    ->name('purchase.address.update');
-
 // 商品出品ページ
 Route::middleware('auth')->get('/sell', [SellController::class, 'create'])->name('items.create');
 Route::middleware('auth')->post('/sell', [SellController::class, 'store'])->name('items.store');
-
-// マイページ
-Route::middleware('auth')->get('/mypage', [ProfileController::class, 'mypage'])->name('mypage');
 
 //ログイン
 Route::get('/login', [LoginController::class, 'show'])->name('login.show');
@@ -90,6 +88,11 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 //    return back()->with('message', '認証メールを再送しました');
 //})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+// マイページ
+Route::get('/mypage', [MypageController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('mypage');
+
 // プロフィール編集（初回・編集どちらも）
 Route::middleware(['auth'])->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])
@@ -99,10 +102,4 @@ Route::middleware(['auth'])->group(function () {
         ->name('mypage.profile.update');
 });
 
-// プロフィール完了後のみ入れるページ
-Route::middleware(['auth', 'verified', 'profile.completed'])->group(function () {
-    Route::get('/mypage', function () {
-        return view('mypage');
-    })->name('mypage');
-});
 

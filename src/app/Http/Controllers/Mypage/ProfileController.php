@@ -7,34 +7,39 @@ use App\Models\User;
 use App\Models\Address;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    // プロフィール編集画面表示
     public function edit()
     {
         $user = auth()->user();
-        $address = $user->address; // リレーションで住所取得（1対1）
+        $address = $user->address; 
 
         return view('mypage.profile', compact('user', 'address'));
     }
 
-    // プロフィール更新処理
     public function update(ProfileRequest $request)
     {
-        $validated = $request->validated();
-
         $user = auth()->user();
 
-        // ユーザー情報更新（名前など）
-        $user->update([
-            'name' => $request->name,
-        ]);
+        if ($request->hasFile('avatar')) {
 
-        // 住所情報更新
+            if ($user->icon_image) {
+                Storage::disk('public')->delete($user->icon_image);
+            }
+
+            $path = $request->file('avatar')->store('avatars', 'public');
+
+            $user->icon_image = $path;
+        }
+
+        $user->name = $request->name;
+        $user->save();
+
         $address = $user->address ?? new Address();
         $address->user_id = $user->id;
-        $address->postal_code = $request->postcode; 
+        $address->postal_code = $request->postcode;
         $address->address = $request->address;
         $address->building = $request->building;
         $address->save();
