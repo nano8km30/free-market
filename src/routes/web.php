@@ -11,6 +11,7 @@ use App\Http\Controllers\SellController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\StripeWebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,28 @@ Route::post('/item/{item}/comments', [CommentsController::class, 'store'])->name
 //いいね
 Route::post('/items/{item}/toggle-like', [LikesController::class, 'toggleLike'])->name('items.toggle-like');
 
-//購入ページへ
-Route::get('/purchase/{id}', [ItemController::class, 'purchase'])->name('item.purchase');
+// 購入画面表示
+Route::get('/purchase/{item}', [PurchaseController::class, 'show'])
+    ->middleware('auth')
+    ->name('purchase.show');
+
+// 購入処理
+Route::post('/purchase/{item}', [PurchaseController::class, 'store'])
+    ->middleware('auth')
+    ->name('purchase.store');
+
+// 決済成功後
+Route::get('/purchase/success', [PurchaseController::class, 'paymentSuccess'])
+    ->name('purchase.payment.success');
+
+Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
+
+//住所変更
+Route::get('/purchase/{item}/address', [PurchaseController::class, 'editAddress'])
+    ->name('purchase.address.edit');
+
+Route::post('/purchase/{item}/address', [PurchaseController::class, 'updateAddress'])
+    ->name('purchase.address.update');
 
 // 商品出品ページ
 Route::middleware('auth')->get('/sell', [SellController::class, 'create'])->name('items.create');

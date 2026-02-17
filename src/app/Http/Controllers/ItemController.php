@@ -76,10 +76,4 @@ class ItemController extends Controller
             'liked' => $liked,
         ]);
     }
-
-    public function purchase($id)
-    {
-        $item = Item::findOrFail($id); 
-        return view('purchase', compact('item')); 
-    }
 }
