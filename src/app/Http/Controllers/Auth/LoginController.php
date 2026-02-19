@@ -37,4 +37,14 @@ class LoginController extends Controller
 
         return redirect()->route('login.show');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if (! $user->hasVerifiedEmail()) {
+            Auth::logout();
+
+            return redirect()
+                ->route('verification.notice');
+        }
+    }
 }
