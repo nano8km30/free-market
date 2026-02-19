@@ -8,7 +8,7 @@ use Log;
 use Stripe\Webhook;
 use Stripe\Stripe;
 
-class WebhookController extends Controller
+class StripeWebhookController extends Controller
 {
     public function handle(Request $request)
     {

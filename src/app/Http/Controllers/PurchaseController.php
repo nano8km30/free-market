@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Address;
 use Stripe\Stripe;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session as StripeSession;
 
 class PurchaseController extends Controller
@@ -71,5 +72,29 @@ class PurchaseController extends Controller
         ]);
 
         return redirect($session->url);
+    }
+
+    public function editAddress($id)
+    {
+        $item = Item::findOrFail($id);
+        $address = auth()->user()->addresses()->first();
+
+        return view('purchase.address', compact('item', 'address'));
+    }
+
+    public function updateAddress(Request $request, $itemId)
+    {
+        $request->validate([
+            'postal_code' => 'required',
+            'address'     => 'required',
+            'building'    => 'nullable',
+        ]);
+
+        auth()->user()->addresses()->updateOrCreate(
+            ['user_id' => auth()->id()],
+            $request->only(['postal_code', 'address', 'building'])
+        );
+
+        return redirect()->route('purchase.show', $itemId);
     }
 }
