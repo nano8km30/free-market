@@ -25,7 +25,7 @@ class ItemController extends Controller
 
             $items = $query->get()->pluck('item');
         } else {
-            $query = Item::query();
+            $query = Item::with('purchase');
 
             if (Auth::check()) {
                 $query->where('user_id', '!=', Auth::id());

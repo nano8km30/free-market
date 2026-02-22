@@ -23,8 +23,8 @@
             @foreach($items as $item)
                 <div class="item-card">
 
-                    @if($item->buyer_id)
-                        <div class="sold-label">SOLD</div>
+                    @if($item->purchase)
+                        <div class="sold-label">Sold</div>
                     @endif
                     <a class="item-link" href="{{ url('/item/'.$item->id) }}">
                         <div class="item-image">
