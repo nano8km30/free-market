@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@php
+    use Illuminate\Support\Str;
+@endphp
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}" />
 @section('title', 'マイページ')
 
@@ -44,7 +47,7 @@
             @forelse($items as $item)
                 <div class="item-card">
                     <div class="item-image">
-                        @if($item->image && Str::startsWith($item->image, 'http'))
+                        @if($item->image && \Illuminate\Support\Str::startsWith($item->image, 'http'))
                             <img src="{{ $item->image }}" alt="{{ $item->name }}">
                         @elseif($item->image)
                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
