@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
+    use HasFactory;
+    
     public function items(): BelongsToMany
     {
         return $this->belongsToMany(Item::class, 'category_item', 'category_id', 'item_id');

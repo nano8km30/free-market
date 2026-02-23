@@ -44,11 +44,17 @@ class ItemController extends Controller
 
     public function show($item_id)
     {
-        $item = Item::findOrFail($item_id);
+        $item = Item::with([
+            'categories',
+            'comments.user',
+            'likes',
+        ])->findOrFail($item_id);
 
         $likesCount = $item->likes->count();
 
-        $liked = Auth::check() ? $item->likes()->where('user_id', Auth::id())->exists() : false;
+        $liked = Auth::check()
+            ? $item->likes->where('user_id', Auth::id())->isNotEmpty()
+            : false;
 
         return view('items.show', compact('item', 'likesCount', 'liked'));
     }
