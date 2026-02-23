@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ItemImage;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Purchase;
 
 class Item extends Model
 {
