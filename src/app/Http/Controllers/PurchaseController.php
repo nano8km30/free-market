@@ -121,10 +121,14 @@ class PurchaseController extends Controller
             'building'    => 'nullable',
         ]);
 
-        auth()->user()->addresses()->updateOrCreate(
+        $address = auth()->user()->addresses()->updateOrCreate(
             ['user_id' => auth()->id()],
             $request->only(['postal_code', 'address', 'building'])
         );
+
+        session([
+            'purchase_address_' . $itemId => $address->id
+        ]);
 
         return redirect()->route('purchase.show', $itemId);
     }
