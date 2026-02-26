@@ -60,7 +60,7 @@ class PurchaseController extends Controller
         ]);
 
         if (App::runningUnitTests()) {
-            return redirect('/');
+        return redirect()->route('purchase.confirm', $item->id);
         }
 
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -83,6 +83,26 @@ class PurchaseController extends Controller
         ]);
 
         return redirect($session->url);
+    }
+
+    public function storePayment(Request $request, Item $item)
+    {
+        $request->validate([
+            'payment_method' => 'required',
+        ]);
+
+        session([
+            'payment_method_' . $item->id => $request->payment_method
+        ]);
+
+        return redirect()->route('purchase.confirm', $item->id);
+    }
+
+    public function confirm(Item $item)
+    {
+        $paymentMethod = session('payment_method_' . $item->id);
+
+        return view('purchase.confirm', compact('item', 'paymentMethod'));
     }
 
     public function editAddress($id)

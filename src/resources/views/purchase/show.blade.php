@@ -32,8 +32,14 @@
                     <label class="item-label">支払い方法</label>
                     <select class="payment-select" name="payment_method" id="payment_method">
                         <option value="">選択してください</option>
-                        <option value="convenience">コンビニ払い</option>
-                        <option value="card">カード払い</option>
+                        <option value="convenience"
+                            {{ session('payment_method') === 'convenience' ? 'selected' : '' }}>
+                            コンビニ払い
+                        </option>
+                        <option value="card"
+                            {{ session('payment_method') === 'card' ? 'selected' : '' }}>
+                            カード払い
+                        </option>
                     </select>
 
                     @error('payment_method')
@@ -64,7 +70,15 @@
                     <span class="price">¥ {{ number_format($item->price) }}</span>
                 </p>
                 <p class="payment-confirmation">支払い方法
-                    <span id="selected-payment">未選択</span>
+                    <span id="selected-payment">
+                        @if(session('payment_method') === 'convenience')
+                            コンビニ支払い
+                        @elseif(session('payment_method') === 'card')
+                            カード支払い
+                        @else
+                            未選択
+                        @endif
+                    </span>
                 </p>
             </div>
 

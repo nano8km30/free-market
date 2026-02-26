@@ -56,6 +56,16 @@ Route::get('/purchase/success', [PurchaseController::class, 'paymentSuccess'])
 
 Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 
+// 支払い方法選択（小計画面用）
+Route::post('/purchase/{item}/payment', [PurchaseController::class, 'storePayment'])
+    ->middleware('auth')
+    ->name('purchase.payment.store');
+
+// 購入内容確認（支払い方法反映用）
+Route::get('/purchase/{item}/confirm', [PurchaseController::class, 'confirm'])
+    ->middleware('auth')
+    ->name('purchase.confirm');
+
 // 商品出品ページ
 Route::middleware('auth')->get('/sell', [SellController::class, 'create'])->name('items.create');
 Route::middleware('auth')->post('/sell', [SellController::class, 'store'])->name('items.store');
