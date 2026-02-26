@@ -25,7 +25,7 @@ class ItemController extends Controller
 
             $items = $query->get()->pluck('item');
         } else {
-            $query = Item::query();
+            $query = Item::with('purchase');
 
             if (Auth::check()) {
                 $query->where('user_id', '!=', Auth::id());
@@ -44,11 +44,17 @@ class ItemController extends Controller
 
     public function show($item_id)
     {
-        $item = Item::findOrFail($item_id);
+        $item = Item::with([
+            'categories',
+            'comments.user',
+            'likes',
+        ])->findOrFail($item_id);
 
         $likesCount = $item->likes->count();
 
-        $liked = Auth::check() ? $item->likes()->where('user_id', Auth::id())->exists() : false;
+        $liked = Auth::check()
+            ? $item->likes->where('user_id', Auth::id())->isNotEmpty()
+            : false;
 
         return view('items.show', compact('item', 'likesCount', 'liked'));
     }
@@ -75,11 +81,5 @@ class ItemController extends Controller
             'like_count' => $item->likes->count(),
             'liked' => $liked,
         ]);
-    }
-
-    public function purchase($id)
-    {
-        $item = Item::findOrFail($id); 
-        return view('purchase', compact('item')); 
     }
 }

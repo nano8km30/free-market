@@ -23,10 +23,9 @@
             @foreach($items as $item)
                 <div class="item-card">
 
-                    @if($item->is_sold)
-                        <span class="sold-message">Sold</span>
+                    @if($item->purchase)
+                        <div class="sold-label">Sold</div>
                     @endif
-
                     <a class="item-link" href="{{ url('/item/'.$item->id) }}">
                         <div class="item-image">
                             @if($item->image && Str::startsWith($item->image, 'http'))

@@ -29,9 +29,11 @@ class RegisterController extends Controller
             'profile_completed' => false,
         ]);
 
+        $user->sendEmailVerificationNotification();
+
         Auth::login($user);
 
-        return redirect()->route('mypage.profile');
+        return redirect()->route('verification.notice');
     }
 
 }

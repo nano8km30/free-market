@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ItemImage;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Purchase;
 
 class Item extends Model
 {
@@ -20,7 +21,9 @@ class Item extends Model
         'price',
         'condition',
         'image',
-        'is_sold',
+        'is_sold',      
+        'buyer_id',    
+        'payment_method' 
     ];
 
     public function user(){
@@ -50,5 +53,11 @@ class Item extends Model
     public function categories(){
         return $this->belongsToMany(Category::class, 'category_item', 'item_id', 'category_id');
     }
+
+    public function purchase()
+    {
+        return $this->hasOne(Purchase::class);
+    }
+
 
 }

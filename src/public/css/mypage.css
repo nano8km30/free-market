@@ -1,0 +1,145 @@
+.mypage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.mypage-content {
+    width: 100%;
+    max-width: 1300px;
+    padding: 40px;
+}
+
+.mypage-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 150px;
+    margin-top: 20px;
+}
+
+.profile-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 150px;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icon-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-left: 150px;
+}
+
+.profile-name {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 40px;
+}
+
+.profile-edit-btn {
+    padding: 8px 40px;
+    border: 2px solid #ff3636;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ff3636;
+    margin-right: 150px;
+}
+
+.profile-edit-btn:hover {
+    background: #ff3636;
+    color: #fff;
+}
+
+.mypage-tabs {
+    position: absolute;
+    top: 320px;
+    left: 0;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000000;
+}
+
+.tab-sell {
+    padding: 10px 0;
+    text-decoration: none;
+    color: #747474;
+    font-size: 20px;
+    position: relative;
+    font-weight: bold;
+    margin-left: 200px;
+}
+
+.tab-buy {
+    padding: 10px 0;
+    text-decoration: none;
+    color: #747474;
+    font-size: 20px;
+    position: relative;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.tab-sell.active,
+.tab-buy.active {
+    color: #ff3939;
+    font-weight: bold;
+}
+
+.tab.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: #000;
+}
+
+.mypage-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.item-image img {
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .mypage-content {
+        max-width: 600px;
+        padding: 32px;
+    }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .mypage-content {
+        max-width: 800px;
+        padding: 48px;
+    }
+}

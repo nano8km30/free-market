@@ -11,7 +11,15 @@
             @csrf
 
             <div class="profile-image">
-                <div class="profile-image__preview"></div>
+                <div class="profile-image__preview">
+                    @if($user->icon_image)
+                        <img
+                            src="{{ asset('storage/' . $user->icon_image) }}"
+                            alt="プロフィール画像"
+                            class="profile-image__img"
+                        >
+                    @endif
+                </div>
 
                 <label class="profile-image__button">
                     画像を選択する
@@ -25,8 +33,7 @@
                     type="text"
                     name="name"
                     class="form-input"
-                    value="{{ old('name', $user->name) }}"
-                >
+                    value="{{ old('name', $user->name) }}">
                 @error('name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
@@ -38,8 +45,7 @@
                     type="text"
                     name="postcode"
                     class="form-input"
-                    value="{{ old('postcode', $address?->postal_code) }}"
-                >
+                    value="{{ old('postcode') ?? $address?->postal_code }}">
                 @error('postcode')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
@@ -51,8 +57,7 @@
                     type="text"
                     name="address"
                     class="form-input"
-                    value="{{ old('address', $address?->address) }}"
-                >
+                    value="{{ old('address') ?? $address?->address }}">
                 @error('address')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
@@ -64,8 +69,7 @@
                     type="text"
                     name="building"
                     class="form-input"
-                    value="{{ old('building', $address?->building) }}"
-                >
+                    value="{{ old('building') ?? $address?->building }}">
             </div>
 
             <button type="submit" class="form-button">
