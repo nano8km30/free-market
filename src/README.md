@@ -10,9 +10,27 @@ Laravel を用いて作成したフリーマーケットアプリケーション
 - PHP 8.x
 - Laravel 8.x
 - Laravel Fortify（ユーザー認証）
-- MySQL （MariaDB 11.8 で動作確認）
+- MySQL 
 - Docker / docker-compose
 - Composer
+- Stripe（決済機能）
+- Mailhog（メール認証）
+
+---
+
+機能一覧
+
+- ユーザー登録 / ログイン / ログアウト
+- メール認証
+- 品一覧表示
+- 商品詳細表示
+- 商品出品
+- 商品購入（Stripe決済）
+- コメント機能
+- いいね機能
+- マイページ
+- プロフィール編集
+- 住所登録 / 変更
 
 ---
 
