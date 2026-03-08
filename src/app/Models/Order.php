@@ -18,4 +18,11 @@ class Order extends Model
     public function payment(){
         return $this->hasOne(Payment::class);
     }
+
+    protected $fillable = [
+        'user_id',
+        'item_id',
+        'address_id',
+        'payment_method'
+    ];
 }
