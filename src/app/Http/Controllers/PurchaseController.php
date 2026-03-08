@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Address;
-use App\Models\Purchase;
+use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +47,7 @@ class PurchaseController extends Controller
             return back()->withErrors(['address' => '配送先を選択してください']);
         }
 
-        Purchase::create([
+        Order::create([
             'user_id' => auth()->id(),
             'item_id' => $item->id,
             'address_id' => $addressId,
